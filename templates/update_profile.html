@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile - SignPro</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-hands"></i>
+                <span>SignPro</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="profile-update">
+        <div class="container">
+            <h1>Update Your Profile</h1>
+
+            <form action="/update_profile" method="POST">
+                <label for="full_name">Full Name:</label>
+                <input type="text" name="full_name" value="{{ full_name }}" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" value="{{ email }}" required>
+
+                <label for="username">Username:</label>
+                <input type="text" name="username" value="{{ username }}" required>
+
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo">
+                        <i class="fas fa-hands"></i>
+                        <span>SignPro</span>
+                    </div>
+                    <p>Breaking communication barriers through technology.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

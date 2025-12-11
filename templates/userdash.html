@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Hand Sign Detection</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8fcbdb, #D23E4C);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        img {
+            width: 640px;
+            height: 480px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            border: 5px solid #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        a {
+            padding: 14px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .go-to-profile {
+            background-color: #1abc9c;
+            color: white;
+        }
+
+        .back-to-dashboard {
+            background-color: #3498db;
+            color: white;
+        }
+
+        a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        a:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Virtual Keyboard Styling */
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .keyboard button {
+            padding: 12px;
+            font-size: 18px;
+            background-color: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .keyboard button:hover {
+            background-color: #2e59d9;
+            transform: scale(1.1);
+        }
+
+        .keyboard button:active {
+            background-color: #1e47a3;
+            transform: scale(1);
+        }
+
+        .image-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .letter-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .keyboard-container{
+            display: flex;
+            gap: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live Hand Sign Detection</h1>
+
+    <div class="container">
+        <!-- Video Feed Section -->
+      <div class="demo-video" style="text-align: center;">
+    <!-- Camera Stream Placeholder -->
+    <img id="videoFeed" src="/video" width="640" height="480" style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); margin-bottom: 10px;" />
+
+    <!-- Icon Buttons for Start/Close -->
+    <div style="margin-top: 10px;">
+        <button onclick="startCamera()" class="btn btn-success" title="Start Camera" style="font-size: 24px; padding: 8px 12px;">▶️</button>
+        <button onclick="stopCamera()" class="btn btn-danger" title="Close Camera" style="font-size: 24px; padding: 8px 12px;">⛔</button>
+    </div>
+</div>
+
+        <!-- Virtual Keyboard Section -->
+        <div class="keyboard-container">
+            <div class="keyboard">
+                <!-- Buttons for letters A to Z (6x4 grid layout) -->
+                <button class="letter-button" data-letter="A">A</button>
+                <button class="letter-button" data-letter="B">B</button>
+                <button class="letter-button" data-letter="C">C</button>
+                <button class="letter-button" data-letter="D">D</button>
+                <button class="letter-button" data-letter="E">E</button>
+                <button class="letter-button" data-letter="F">F</button>
+                <button class="letter-button" data-letter="G">G</button>
+                <button class="letter-button" data-letter="H">H</button>
+                <button class="letter-button" data-letter="I">I</button>
+                <button class="letter-button" data-letter="J">J</button>
+                <button class="letter-button" data-letter="K">K</button>
+                <button class="letter-button" data-letter="L">L</button>
+                <button class="letter-button" data-letter="M">M</button>
+                <button class="letter-button" data-letter="N">N</button>
+                <button class="letter-button" data-letter="O">O</button>
+                <button class="letter-button" data-letter="P">P</button>
+                <button class="letter-button" data-letter="Q">Q</button>
+                <button class="letter-button" data-letter="R">R</button>
+                <button class="letter-button" data-letter="S">S</button>
+                <button class="letter-button" data-letter="T">T</button>
+                <button class="letter-button" data-letter="U">U</button>
+                <button class="letter-button" data-letter="V">V</button>
+                <button class="letter-button" data-letter="W">W</button>
+                <button class="letter-button" data-letter="X">X</button>
+                <button class="letter-button" data-letter="Y">Y</button>
+                <button class="letter-button" data-letter="Z">Z</button>
+            </div>
+
+            <!-- Display the sign language image when a letter is clicked -->
+            <div class="image-container">
+                <h3 id="letter-title">Click a letter to see the sign</h3>
+                <img id="letter-image" class="letter-image" src="" alt="Letter Sign Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons in the same line below -->
+    <div class="button-container">
+        <a href="/profile" class="go-to-profile">Go to Profile</a>
+        <a href="/" class="back-to-dashboard">Back to Dashboard</a>
+    </div>
+
+    <!-- JavaScript to handle letter button click and update image -->
+    <script>
+        document.querySelectorAll('.letter-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const letter = this.getAttribute('data-letter');
+                const imageUrl = `/static/sign/${letter.toUpperCase()}.png`;  // Assuming images are named as A.png, B.png, etc.
+
+                // Update the image with the corresponding letter's sign
+                document.getElementById('letter-image').src = imageUrl;
+                document.getElementById('letter-title').textContent = `Sign for ${letter}`;
+            });
+        });
+    </script>
+    <script>
+  function startCamera() {
+    document.getElementById("videoFeed").src = "/video";
+  }
+
+  function stopCamera() {
+    document.getElementById("videoFeed").src = "";
+  }
+
+  // Update copyright year
+  document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignPro - Sign Language Recognition System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-hands"></i>
+                <span>SignPro</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="/create_user" class="btn btn-outline">User Login</a></li>
+                     <li><a href="/admin/login" class="btn btn-primary">Admin Login</a></li> 
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Real-Time American Sign Language (ASL) Recognition Using Computer Vision</h1>
+                <p>"SignPro is a self-learning platform that empowers users to practice and recognize ASL alphabets in real time — independently and offline."</p>
+                <div class="cta-buttons">
+                    <a href="/login" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/static/images/sign.png" alt="Sign language recognition">
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-video"></i>
+                    <h3><a href="/feature/realtime-detection">Real-time ASL Detection</a></h3>
+                    <p>Recognize ASL alphabets instantly using rule-based logic and hand tracking.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3><a href="/feature/rule-based">Rule-Based Recognition</a></h3>
+                    <p>Uses landmark-based rules without requiring machine learning models.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h3><a href="/feature/mediapipe-opencv">MediaPipe & OpenCV Powered</a></h3>
+                    <p>Hand tracking and gesture analysis through computer vision libraries.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-arrows-alt"></i>
+                    <h3><a href="/feature/expandable">Expandable</a></h3>
+                    <p>Future-ready for dynamic gesture support and full-sentence recognition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="how-it-works">
+        <h2>How SignPro Works</h2>
+        <div class="steps">
+          
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Open the Application</div>
+            <div class="step-description">User runs the app and webcam starts capturing the hand gesture.</div>
+          </div>
+      
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">Hand Landmark Detection</div>
+            <div class="step-description">MediaPipe detects 21 key landmarks on the user's hand using computer vision.</div>
+          </div>
+      
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Rule-Based Gesture Recognition</div>
+            <div class="step-description">System uses conditional rules to recognize ASL alphabets based on landmark positions.</div>
+          </div>
+      
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">Display Recognized Alphabet</div>
+            <div class="step-description">The matching alphabet is displayed in real-time on the screen instantly.</div>
+          </div>
+      
+        </div>
+      </section>
+      
+      
+
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>Try Our Demo</h2>
+           <!-- 🎥 Video Container -->
+<div style="text-align: center; margin-top: 20px;">
+  <div id="demoVideoWrapper" style="
+      width: 480px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+  ">
+    <!-- ❌ Close Button -->
+    <button onclick="minimizeVideo()" style="
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        z-index: 10;
+    ">×</button>
+
+    <!-- 🎬 Video -->
+    <video id="demoVideo" controls width="100%">
+      <source src="/static/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- 🔁 Show Again Button -->
+  <button id="restoreBtn" onclick="restoreVideo()" style="
+      display: none;
+      margin-top: 15px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+  ">
+    🔁 Show Video Again
+  </button>
+</div>
+
+
+
+
+                <div class="demo-info">
+                    <h3>Experience SignPro in Action</h3>
+                    <p>See how our system translates sign language in real-time with high accuracy.</p>
+                    <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo">
+                        <i class="fas fa-hands"></i>
+                        <span>SignPro</span>
+                    </div>
+                    <p>Real-Time ASL Recognition Anytime, Offline"</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> rautomkar1630@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9702990345</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> SignPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+   <script>
+  function minimizeVideo() {
+    document.getElementById("demoVideoWrapper").style.display = "none";
+    document.getElementById("restoreBtn").style.display = "inline-block";
+  }
+
+  function restoreVideo() {
+    document.getElementById("demoVideoWrapper").style.display = "block";
+    document.getElementById("restoreBtn").style.display = "none";
+  }
+</script>
+
+
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
