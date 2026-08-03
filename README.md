@@ -1,4 +1,4 @@
-# American Sign Language Recognition – Self-Learning System
+# American Sign Language Recognition system
 
 A rule-based American Sign Language (ASL) recognition system that detects hand gestures using predefined logical conditions. It analyzes hand shape, finger positions, and orientation, then matches them to stored rules for accurate gesture identification. The system is fast, interpretable, and useful for basic ASL communication.
 
